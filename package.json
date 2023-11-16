@@ -1,0 +1,25 @@
+{
+  "name": "superdapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build --prefix frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superpuper32/superDApp.git"
+  },
+  "keywords": [],
+  "author": "superpuper32",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/superpuper32/superDApp/issues"
+  },
+  "homepage": "https://github.com/superpuper32/superDApp#readme",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.1"
+  }
+}

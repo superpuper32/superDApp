@@ -1,8 +1,16 @@
+import * as React from 'react'
+
 import './button.css'
 
-export default function Button({name}) {
+type Props = {
+  name: string
+}
+
+const Button: React.FC<Props> = ({name}) => {
 
   return <button className="btn-primary">
       Connect {name}
     </button>
 }
+
+export default Button

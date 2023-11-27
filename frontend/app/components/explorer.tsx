@@ -13,13 +13,13 @@ const Explorer = () => {
     });
 
     return (
-        <div className="container w-50 mx-auto max-w-md my-8 border border-slate-300 rounded-lg shadow-md space-y-4 p-5">
+        <div className="container w-50 mx-auto max-w-md my-8 dark:bg-slate-600 dark:text-slate-200 border border-slate-300 rounded-lg shadow-md space-y-4 p-5">
             <div className="flex justify-center">
                 <p className="text-2xl">$7,921 </p> USD
             </div>
 
             <div className="flex items-center justify-between pb-2 border-b">
-                <h2 className="font-semibold text-slate-900">Tokens <i className="text-slate-500">(2)</i></h2>
+                <h2 className="font-semibold text-slate-900 dark:text-slate-200">Tokens <i className="text-slate-500">(2)</i></h2>
                 <div className="rounded-full bg-slate-100 w-5 text-center">+</div>
             </div>
 
@@ -41,7 +41,7 @@ const Explorer = () => {
                 </div>
                 <div>
                     <div className="text-right">$1,386.12</div>
-                    {linkAddress.data && <div className="text-slate-500">{linkAddress?.data.formatted} {linkAddress.data?.symbol}</div>}
+                    {linkAddress.data && <div className="text-slate-500 dark:text-slate-200">{linkAddress?.data.formatted} {linkAddress.data?.symbol}</div>}
                 </div>
             </div>
 

@@ -13,7 +13,7 @@ const Explorer = () => {
     });
 
     return (
-        <div className="container w-50 mx-auto max-w-md my-8 dark:bg-slate-600 dark:text-slate-200 border border-slate-300 rounded-lg shadow-md space-y-4 p-5">
+        <div className="container w-50 mx-auto max-w-md bg-white dark:bg-slate-600 dark:text-slate-200 border border-slate-300 rounded-lg shadow-md space-y-4 p-5">
             <div className="flex justify-center">
                 <p className="text-2xl">$7,921 </p> USD
             </div>

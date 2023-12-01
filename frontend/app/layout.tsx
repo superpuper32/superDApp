@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <div className="w-screen bg-white">
+          <div className="w-screen bg-white dark:bg-slate-800">
             <Nav />
           </div>
           {children}

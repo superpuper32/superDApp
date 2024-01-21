@@ -1,6 +1,6 @@
 import { ConnectKitButton, ConnectKitProvider } from 'connectkit'
 import { ThemeProvider } from 'styled-components'
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 import useThemeMode from '../hooks/useThemeMode'
 import { lightTheme, darkTheme } from '../styles/themes'
@@ -21,6 +21,7 @@ const Root = () => {
 
             <StyledHeader>
             <StyledFlex>
+                <Link to={`/gecko`}>Gecko</Link>
                 <TogglerButton themeToggler={themeToggler} />
                 <ConnectKitButton />
             </StyledFlex>

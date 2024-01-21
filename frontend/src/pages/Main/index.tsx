@@ -3,8 +3,7 @@ import { StyledFlex } from '../../components/styles/Flex.styled'
 import SmartContractCard from '../../components/SmartContractCard'
 
 const Main = () => {
-    
-    return (
+  return (
     <>
       <StyledContainer>
           <StyledFlex>

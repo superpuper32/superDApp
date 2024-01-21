@@ -4,6 +4,7 @@ import { ErrorPage, Main } from './pages';
 
 import Root from './routes/root';
 import Contract from './pages/Contract';
+import Gecko from './pages/Gecko';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: '/contract',
         element: <Contract name="Smart Contract Name" />,
+      },
+      {
+        path: '/gecko',
+        element: <Gecko />,
       }
     ],
   },

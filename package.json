@@ -18,6 +18,10 @@
     "url": "https://github.com/superpuper32/superDApp/issues"
   },
   "homepage": "https://github.com/superpuper32/superDApp#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.5",
+    "dotenv": "^16.3.1"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "hardhat": "^2.19.1"

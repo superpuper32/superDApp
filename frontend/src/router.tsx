@@ -5,6 +5,7 @@ import { ErrorPage, Main } from './pages';
 import Root from './routes/root';
 import Contract from './pages/Contract';
 import Gecko from './pages/Gecko';
+import Swap from './pages/Swap';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: '/gecko',
         element: <Gecko />,
+      },
+      {
+        path: '/swap',
+        element: <Swap />,
       }
     ],
   },

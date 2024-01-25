@@ -20,11 +20,14 @@ const Root = () => {
             <GlobalStyle />
 
             <StyledHeader>
-            <StyledFlex>
-                <Link to={`/gecko`}>Gecko</Link>
-                <TogglerButton themeToggler={themeToggler} />
-                <ConnectKitButton />
-            </StyledFlex>
+              <StyledFlex>
+                  <div>
+                    <Link to={`/gecko`}>Gecko</Link>
+                    <Link to={`/swap`}>Swap</Link>
+                  </div>
+                  <TogglerButton themeToggler={themeToggler} />
+                  <ConnectKitButton />
+              </StyledFlex>
             </StyledHeader>
 
             <Outlet />

@@ -8,12 +8,17 @@ type GlobalThemeProps = {
 const globalStyle = createGlobalStyle`
   :root {
     //dark-mode
-    --dark-background: rgb(30, 41, 59);
-    --dark-text: rgb(255, 255, 255);
+    --dark-background: color(display-p3 0.2 0.2 0.2); // color(display-p3 0.25098039215686274 0.25098039215686274 0.25098039215686274) )
+    --dark-background_form: color(display-p3 0.501961 0.501961 0.501961);
+    --dark-background_input: color(display-p3 0.219608 0.219608 0.219608);
+    --dark-text: color(display-p3 1 1 1); // color(display-p3 0.501961 0.501961 0.501961)
 
     //light-mode
     --light-background: rgb(255, 255, 255);
-    --light-text: rgb(0, 0, 0);
+    /* --light-background_form: color(display-p3 0.25098039215686274 0.25098039215686274 0.25098039215686274); */
+    --light-background_form: rgb(255, 255, 255);
+    --light-background_input: color(display-p3 0.964706 0.968627 0.976471);
+    --light-text: color(display-p3 0.215686 0.215686 0.215686);
   }
 
   * {

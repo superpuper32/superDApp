@@ -2,26 +2,29 @@ import { getContract, getWalletClient } from 'wagmi/actions'
 
 import AmmContract from '../../../../artifacts/contracts/AMM.sol/AMM.json';
 import useMaticContract from './useMaticContract';
-import useGoflowContract from './useSuperflowContract';
+import useSuperContract from './useSuperContract';
 import { makeBig, makeNum } from '../../lib/number-utils';
+// import { GetContractReturnType } from 'viem';
 
 interface PoolDetails {
   totalMatic: string;
-  totalGoflow: string;
+  totalSuper: string;
   totalShares: string;
 }
 
 interface UserHoldings {
   userMatic: string;
-  userGoflow: string;
+  userSuper: string;
   userShares: string;
 }
+
+// type TPoolDetails = [bigint, bigint, bigint]
 
 const useAmmContract = () => {
   const walletClient = getWalletClient();
   
   const maticContract = useMaticContract();
-  const goflowContract = useGoflowContract();
+  const superContract = useSuperContract();
 
   const contract = getContract({
     address: '0x0000000000000000000000000000000000000001',
@@ -30,12 +33,12 @@ const useAmmContract = () => {
   });
 
   const getPoolDetails = async (): Promise<PoolDetails> => {
-    const poolDetails = await contract. .getPoolDetails();
+    const poolDetails = await contract.read.getPoolDetails();
 
     // Convert from BigNumber to human readable strings for front-end
     return {
       totalMatic: makeNum(poolDetails.maticAmount),
-      totalGoflow: makeNum(poolDetails.goflowAmount),
+      totalSuper: makeNum(poolDetails.superAmount),
       totalShares: makeNum(poolDetails.ammShares),
     };
   };
@@ -46,24 +49,24 @@ const useAmmContract = () => {
     // Convert from BigNumber to human readable strings for front-end
     return {
       userMatic: makeNum(userHoldings.maticAmount),
-      userGoflow: makeNum(userHoldings.goflowAmount),
+      userSuper: makeNum(userHoldings.superAmount),
       userShares: makeNum(userHoldings.myShare),
     };
   };
 
   const getSwapMaticEstimate = async (amountMatic: string): Promise<string> => {
-    // find out the amount of GOFLOW we get for a given amount of MATIC
-    const goflowEstimateBN = await contract.getSwapMaticEstimate(makeBig(amountMatic));
-    return makeNum(goflowEstimateBN);
+    // find out the amount of SUPER we get for a given amount of MATIC
+    const superEstimateBN = await contract.getSwapMaticEstimate(makeBig(amountMatic));
+    return makeNum(superEstimateBN);
   };
 
-  const getSwapGoflowEstimate = async (amountGoflow: string): Promise<string> => {
-    // find out the amount of MATIC we get for a given amount of GOFLOW
-    const maticEstimateBN = await contract.getSwapGoflowEstimate(makeBig(amountGoflow));
+  const getSwapSuperEstimate = async (amountSuper: string): Promise<string> => {
+    // find out the amount of MATIC we get for a given amount of SUPER
+    const maticEstimateBN = await contract.getSwapSuperEstimate(makeBig(amountSuper));
     return makeNum(maticEstimateBN);
   };
 
-  const swapMaticForGoflow = async (amountMatic: string): Promise<void> => {
+  const swapMaticForSuper = async (amountMatic: string): Promise<void> => {
     const amountMaticBN = makeBig(amountMatic);
 
     await maticContract.approve(contract.address, amountMaticBN);
@@ -72,12 +75,12 @@ const useAmmContract = () => {
     await swapTx.wait();
   };
 
-  const swapGoflowForMatic = async (amountGoflow: string): Promise<void> => {
-    const amountGoflowBN = makeBig(amountGoflow);
+  const swapSuperForMatic = async (amountSuper: string): Promise<void> => {
+    const amountSuperBN = makeBig(amountSuper);
 
-    await goflowContract.approve(contract.address, amountGoflowBN);
+    await superContract.approve(contract.address, amountSuperBN);
 
-    const swapTx = await contract.swapGoflow(amountGoflowBN);
+    const swapTx = await contract.swapSuper(amountSuperBN);
     await swapTx.wait();
   };
 
@@ -87,9 +90,9 @@ const useAmmContract = () => {
     getPoolDetails,
     getUserHoldings,
     getSwapMaticEstimate,
-    getSwapGoflowEstimate,
-    swapMaticForGoflow,
-    swapGoflowForMatic,
+    getSwapSuperEstimate,
+    swapMaticForSuper,
+    swapSuperForMatic,
   };
 };
 

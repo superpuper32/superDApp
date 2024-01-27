@@ -7,13 +7,13 @@ import useAmmContract from '../../hooks/contracts/useAmmContract'
 import useSwap from '../hooks/useSwap'
 
 const Swap = () => {
-  const [fromMaticText, setFromMaticText] = useState('')
-  const [fromGoflowText, setFromGoflowText] = useState('')
+  const [fromMaticText, setFromMaticText] = useState('');
+  const [fromSuperText, setFromSuperText] = useState('');
   const [isMaticToGoflow, setIsMatic] = useState(true);
 
   const ammContract = useAmmContract();
   const { address, isConnected } = useAccount();
-  const { useSwapMatic, useSwapGoflow } = useSwap();
+  const { useSwapMatic, useSwapSuper } = useSwap();
   const { poolDetailsQuery, userHoldingsQuery } = useAmmDetails();
 
   const parse = (val: string) => {
@@ -27,17 +27,17 @@ const Swap = () => {
   const handleChange = async (isMatic: boolean, value: string | undefined) => {
     if (!value) {
       setFromMaticText('');
-      setFromGoflowText('');
+      setFromSuperText('');
     } else {
       const parsedValue = parse(value);
       
       if (isMatic) {
         setFromMaticText(parsedValue);
-        const goflowEstimate = await ammContract.getSwapMaticEstimate(parsedValue);
-        setFromGoflowText(goflowEstimate);
+        const superEstimate = await ammContract.getSwapMaticEstimate(parsedValue);
+        setFromSuperText(superEstimate);
       } else {
-        setFromGoflowText(parsedValue);
-        const maticEstimate = await ammContract.getSwapGoflowEstimate(parsedValue);
+        setFromSuperText(parsedValue);
+        const maticEstimate = await ammContract.getSwapSuperEstimate(parsedValue);
         setFromMaticText(maticEstimate);
       }
     }
@@ -48,7 +48,7 @@ const Swap = () => {
       <StyledContainer>
           <TokenSwapper
             changeHandler={handleChange}
-            amount={isMaticToGoflow ? fromMaticText : fromGoflowText}
+            amount={isMaticToGoflow ? fromMaticText : fromSuperText}
             isMatic={isMaticToGoflow}
             isFrom={true}
           />
@@ -58,4 +58,4 @@ const Swap = () => {
   )
 }
 
-export default Swap
+export default Swap;

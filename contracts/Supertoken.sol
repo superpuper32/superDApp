@@ -3,13 +3,13 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
-contract Superflow is IERC20 {
+contract Super is IERC20 {
 
     uint public override totalSupply;
     mapping(address => uint) public override balanceOf;
     mapping(address => mapping(address => uint)) public override allowance;
-    string public name = "Superflow";
-    string public symbol = "SUPERFLOW";
+    string public name = "Super";
+    string public symbol = "SUPER";
     uint public decimals = 18;
 
     function transfer(address recipient, uint amount) external override returns (bool) {

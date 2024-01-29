@@ -3,7 +3,7 @@ import useAmmContract from './contracts/useAmmContract';
 
 interface UseSwapPayload {
   maticAmount?: string;
-  goflowAmount?: string;
+  superAmount?: string;
 }
 
 const useSwap = () => {
@@ -11,17 +11,17 @@ const useSwap = () => {
 
   const useSwapMatic = useMutation(async ({ maticAmount }: UseSwapPayload) => {
     if (maticAmount) {
-      await ammContract.swapMaticForGoflow(maticAmount);
+      await ammContract.swapMaticForSuper(maticAmount);
     }
   });
 
-  const useSwapGoflow = useMutation(async ({ goflowAmount }: UseSwapPayload) => {
-    if (goflowAmount) {
-      await ammContract.swapGoflowForMatic(goflowAmount);
+  const useSwapSuper = useMutation(async ({ superAmount }: UseSwapPayload) => {
+    if (superAmount) {
+      await ammContract.swapSuperForMatic(superAmount);
     }
   });
 
-  return { useSwapMatic, useSwapGoflow };
+  return { useSwapMatic, useSwapSuper };
 };
 
 export default useSwap;

@@ -1,7 +1,7 @@
 import { getContract, getWalletClient } from 'wagmi/actions'
 import type { BigNumberish } from 'ethers';
 
-import SuperflowContract from '../../../../artifacts/contracts/SuperToken.sol/Superflow.json';
+import SuperContract from '../../../../artifacts/contracts/SuperToken.sol/Super.json';
 import { makeNum } from '../../lib/number-utils';
 
 export type Amount = BigNumberish;
@@ -12,12 +12,12 @@ export interface Transfer {
   amount: BigNumberish;
 }
 
-const useSuperflowContract = () => {
+const useSuperContract = () => {
   const walletClient = getWalletClient();
 
   const contract = getContract({
     address: '0x0000000000000000000000000000000000000001',
-    abi: SuperflowContract.abi,
+    abi: SuperContract.abi,
     walletClient,
   });
 
@@ -45,4 +45,4 @@ const useSuperflowContract = () => {
   };
 };
 
-export default useSuperflowContract;
+export default useSuperContract;

@@ -1,15 +1,20 @@
 import { useState } from 'react';
+
 import { StyledTokenSwapperInput } from './TokenSwapperInput.styled';
 import { StyledFlex } from '../styles/Flex.styled';
 
-interface ITokenSwapperInput {
-  labelText: string,
-  token: string
+interface TokenSwapperInputProps {
+  changeHandler: (isMatic: boolean, amount: string) => void;
+  amount: string;
+  isMatic: boolean;
+  isFrom: boolean;
 }
 
-const TokenSwapperInput: React.FC<ITokenSwapperInput> = ({
-  labelText,
-  token
+const TokenSwapperInput: React.FC<TokenSwapperInputProps> = ({
+  changeHandler,
+  amount,
+  isMatic,
+  isFrom
 }): JSX.Element => {
   const [inputFrom, setInputFrom] = useState(Number(1).toFixed(2));
 
@@ -19,7 +24,7 @@ const TokenSwapperInput: React.FC<ITokenSwapperInput> = ({
     <StyledTokenSwapperInput>
       <label className="form_label">
         <div className="stack">
-          <p className="text">{labelText}</p>
+          <p className="text">{isFrom ? "You pay" : "You receive"}</p>
         </div>
       </label>
       <StyledFlex>
@@ -33,12 +38,13 @@ const TokenSwapperInput: React.FC<ITokenSwapperInput> = ({
             role="spinbutton"
             aria-valuetext="1.00 MATIC"
             className="numberinput__field"
-            value={inputFrom}
-            onChange={handleInput}
+            value={amount}
+            onChange={(e) => changeHandler(isMatic, e.target.value)}
+
           />
         </div>
         <div className="token">
-          {token}
+          {isMatic ? ' MATIC' : ' SUPER'}
         </div>
       </StyledFlex>
     </StyledTokenSwapperInput>

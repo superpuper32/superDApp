@@ -74,3 +74,16 @@ export const StyledTokenSwapperInput = styled.div`
         justify-content: center;
     }
 `;
+
+
+export const StyledSwapperVertButton = styled.button`
+    position: relative;
+    top: 0;
+    left: calc(50% - 50px);
+    color: ${({ theme }) => theme.text};
+    background: ${({ theme }) => theme.background_form};
+    outline: none;
+    border: 0px solid;
+    padding: 8px;
+    border-radius: 4px;
+`;

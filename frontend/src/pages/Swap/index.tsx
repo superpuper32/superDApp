@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { useWalletClient } from 'wagmi'
+import * as React from 'react';
+import { useWalletClient } from 'wagmi';
 
-import TokenSwapper from '../../components/TokenSwapper'
-import { StyledContainer } from '../../components/styles/Container.styled'
+import TokenSwapper from '../../components/TokenSwapper';
+import { StyledContainer } from '../../components/styles/Container.styled';
 
 const Swap: React.FC = () => {
   const { data: walletClient, isError, isLoading  } = useWalletClient();

@@ -6,7 +6,9 @@ import useAmmContract from '../../hooks/contracts/useAmmContract';
 import useSwap from '../../hooks/useSwap';
 
 import TokenSwapperInput from './TokenSwapperInput';
-import { StyledSwapperVertButton } from './TokenSwapperInput.styled';
+import { StyledSwapperVertButton } from './TokenSwapper.styled';
+import SwapButton from './SwapButton';
+
 
 interface TokenSwapperProps {
     walletClient: WalletClient;
@@ -78,7 +80,10 @@ const TokenSwapper: React.FC<TokenSwapperProps> = ({ walletClient }) => {
             isFrom={false}
         />
 
-        <button onClick={handleClick}>Swap!</button>
+        <SwapButton
+            handleClick={handleClick}
+            isLoading={useSwapMatic.isPending || useSwapSuper.isPending}
+        />
     </>
   );
 };

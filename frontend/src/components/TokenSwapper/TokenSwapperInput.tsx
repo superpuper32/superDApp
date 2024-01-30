@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import { StyledTokenSwapperInput } from './TokenSwapperInput.styled';
+import { StyledTokenSwapperInput } from './TokenSwapper.styled';
 import { StyledFlex } from '../styles/Flex.styled';
 
 interface TokenSwapperInputProps {
@@ -16,10 +14,6 @@ const TokenSwapperInput: React.FC<TokenSwapperInputProps> = ({
   isMatic,
   isFrom
 }): JSX.Element => {
-  const [inputFrom, setInputFrom] = useState(Number(1).toFixed(2));
-
-  const handleInput = (e: any) => setInputFrom(e.target.value);
-  
   return (
     <StyledTokenSwapperInput>
       <label className="form_label">

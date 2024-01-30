@@ -18,7 +18,7 @@ const makeBig = (value: string | number) => {
  * e.g. makeNum(1345600000000000000) = 1.34
  * for more info see https://docs.ethers.io/v5/api/utils/display-logic/
  */
-const makeNum = (value: BigNumberish) => {
+const makeNum = (value: any) => {
   const numStr = formatUnits(value, 18);
   return numStr.substring(0, numStr.indexOf('.') + 3); // keep only 2 decimals
 };

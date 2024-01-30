@@ -1,21 +1,32 @@
 import { useState, useEffect } from 'react'
-// import { useAccount } from 'wagmi'
+import { WalletClient } from 'wagmi';
+import toast from 'react-hot-toast';
 
 import useAmmContract from '../../hooks/contracts/useAmmContract';
+import useSwap from '../../hooks/useSwap';
+
 import TokenSwapperInput from './TokenSwapperInput';
 import { StyledSwapperVertButton } from './TokenSwapperInput.styled';
 
-const TokenSwapper = () => {
+interface TokenSwapperProps {
+    walletClient: WalletClient;
+}
+
+const TokenSwapper: React.FC<TokenSwapperProps> = ({ walletClient }) => {
     const [fromMaticText, setFromMaticText] = useState('');
     const [fromSuperText, setFromSuperText] = useState('');
     const [isMaticToSuper, setIsMatic] = useState(true);
 
-    // const { address, isConnected } = useAccount();
-    const ammContract = useAmmContract();
+    const ammContract = useAmmContract(walletClient);
+    const { useSwapMatic, useSwapSuper } = useSwap(walletClient);
 
     const parse = (val: string) => {
         return val.replace(/ [a-zA-Z]+/i, '');
     };
+
+    useEffect(() => {
+        handleChange(isMaticToSuper, '1.00');
+    }, []);
 
     const handleChange = async (isMatic: boolean, value: string | undefined) => {
         if (!value) {
@@ -36,9 +47,18 @@ const TokenSwapper = () => {
         }
     };
 
-    useEffect(() => {
-        handleChange(isMaticToSuper, '1.00');
-    }, []);
+    const handleClick = async () => {
+        try {
+            if (isMaticToSuper) {
+                await useSwapMatic.mutateAsync({ maticAmount: fromMaticText });
+            } else {
+                await useSwapSuper.mutateAsync({ superAmount: fromSuperText });
+            }
+            toast.success('Hey 👑. Nice Swap 😎', { duration: 5000 });
+        } catch (e: any) {
+            toast.error(e.data?.message || e.message);
+        }
+    };
   
   return (
     <>
@@ -58,7 +78,7 @@ const TokenSwapper = () => {
             isFrom={false}
         />
 
-
+        <button onClick={handleClick}>Swap!</button>
     </>
   );
 };

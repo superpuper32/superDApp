@@ -1,4 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
+import { WalletClient } from 'wagmi'
+
 import useAmmContract from './contracts/useAmmContract';
 
 interface UseSwapPayload {
@@ -6,19 +8,22 @@ interface UseSwapPayload {
   superAmount?: string;
 }
 
-const useSwap = () => {
-  const ammContract = useAmmContract();
+const useSwap = (walletClient: WalletClient) => {
+  const ammContract = useAmmContract(walletClient);
 
-  const useSwapMatic = useMutation(async ({ maticAmount }: UseSwapPayload) => {
-    if (maticAmount) {
-      await ammContract.swapMaticForSuper(maticAmount);
-    }
-  });
+  const useSwapMatic = useMutation({ mutationFn: async ({ maticAmount }: UseSwapPayload) => {
+        if (maticAmount) {
 
-  const useSwapSuper = useMutation(async ({ superAmount }: UseSwapPayload) => {
+          await ammContract.swapMaticForSuper(maticAmount);
+        }
+      },
+    });
+
+  const useSwapSuper = useMutation({ mutationFn: async ({ superAmount }: UseSwapPayload) => {
     if (superAmount) {
       await ammContract.swapSuperForMatic(superAmount);
     }
+  },
   });
 
   return { useSwapMatic, useSwapSuper };

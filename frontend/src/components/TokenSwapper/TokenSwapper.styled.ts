@@ -87,3 +87,18 @@ export const StyledSwapperVertButton = styled.button`
     padding: 8px;
     border-radius: 4px;
 `;
+
+export const StyledSwapButton = styled.button`
+    display: block;
+    width: 90%;
+    padding: 1rem;
+    margin: 2rem auto;
+    outline: none;
+    border: 0px solid;
+    border-radius: 20px;
+    color: ${({ theme }) => theme.text};
+    background: linear-gradient( 180deg, #BF5AF2 0%, #FF2D55 100% );
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+`;

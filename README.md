@@ -14,6 +14,6 @@ there you can buy some super token for using contracts
 
 #### TO DO
 
-- deploy to swap contracts to polygon mumbai
+- deploy swap contracts to polygon mumbai
 - finish list of smart contracts with statuses: (created, launched, fineshed)
 - realise interaction with available smart contracts with state modes

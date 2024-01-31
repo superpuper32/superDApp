@@ -1,11 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { ErrorPage, Main } from './pages';
-
 import Root from './routes/root';
-import Contract from './pages/Contract';
-import Gecko from './pages/Gecko';
-import Swap from './pages/Swap';
+import {
+  ErrorPage,
+  Main,
+  Swap,
+  Contracts,
+  Contract,
+  Gecko
+} from './pages';
 
 const router = createBrowserRouter([
   {
@@ -18,17 +21,21 @@ const router = createBrowserRouter([
         element: <Main />,
       },
       {
-        path: '/contract',
-        element: <Contract name="Smart Contract Name" />,
+        path: '/swap',
+        element: <Swap />,
+      },
+      {
+        path: '/contracts',
+        element: <Contracts />,
+      },
+      {
+        path: '/contracts/:contractId',
+        element: <Contract />,
       },
       {
         path: '/gecko',
         element: <Gecko />,
       },
-      {
-        path: '/swap',
-        element: <Swap />,
-      }
     ],
   },
 ]);

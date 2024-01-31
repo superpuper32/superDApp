@@ -7,8 +7,7 @@ const Main = () => {
     <>
       <StyledContainer>
           <StyledFlex>
-            <SmartContractCard name="Dutch Auction" link={'contract'} />
-            <SmartContractCard name="Crowd Fund" link={'contract'} />
+            <h1>gm fren</h1>
           </StyledFlex>
         </StyledContainer>
     </>

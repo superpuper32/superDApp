@@ -1,6 +1,6 @@
 import { ConnectKitButton, ConnectKitProvider } from 'connectkit';
 import { ThemeProvider } from 'styled-components';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import useThemeMode from '../hooks/useThemeMode';
@@ -10,6 +10,7 @@ import GlobalStyle from '../styles/global';
 import { StyledHeader } from '../components/Header/header.styled';
 import { StyledFlex } from '../components/styles/Flex.styled';
 import TogglerButton from '../components/TogglerButton';
+import Nav from '../components/Nav';
 
 const Root = () => {
     const { theme, themeToggler } = useThemeMode();
@@ -22,10 +23,7 @@ const Root = () => {
 
             <StyledHeader>
               <StyledFlex>
-                  <div>
-                    <Link to={`/gecko`}>Gecko</Link>
-                    <Link to={`/swap`}>Swap</Link>
-                  </div>
+                  <Nav />
                   <TogglerButton themeToggler={themeToggler} />
                   <ConnectKitButton />
               </StyledFlex>
